@@ -1,0 +1,14 @@
+package bankingsystem;
+
+public class LoggerThread extends Thread {
+    private String message;
+
+    public LoggerThread(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("[LOG] " + message);
+    }
+}
