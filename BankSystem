@@ -1,0 +1,35 @@
+package bankingsystem;
+import java.util.*;
+
+public class BankSystem {
+    static Scanner sc = new Scanner(System.in);
+    static BankOperations bank = new BankOperations();
+
+    public static void start() {
+        int choice;
+
+        do {
+            System.out.println("\n--- Banking Management System ---");
+            System.out.println("1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Balance Inquiry");
+            System.out.println("5. Transaction History");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1 -> bank.createAccount();
+                case 2 -> bank.deposit();
+                case 3 -> bank.withdraw();
+                case 4 -> bank.checkBalance();
+                case 5 -> bank.viewTransactions();
+                case 6 -> System.out.println("Thank you for using our system.");
+                default -> System.out.println("Invalid choice.");
+            }
+        } while (choice != 6);
+    }
+}
