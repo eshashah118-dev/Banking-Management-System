@@ -1,0 +1,49 @@
+package bankingsystem;
+import java.util.*;
+
+public class BankOperations {
+    private static int accCounter = 1000;
+    private Account currentAccount;
+
+    public void createAccount() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+        currentAccount = new Account(++accCounter, name);
+        System.out.println("Account created. ID: " + currentAccount.getAccountId());
+    }
+
+    public void deposit() {
+        if (isAccountNull()) return;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter amount to deposit: ");
+        double amount = sc.nextDouble();
+        currentAccount.deposit(amount);
+    }
+
+    public void withdraw() {
+        if (isAccountNull()) return;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter amount to withdraw: ");
+        double amount = sc.nextDouble();
+        currentAccount.withdraw(amount);
+    }
+
+    public void checkBalance() {
+        if (isAccountNull()) return;
+        System.out.println("Your balance is: $" + currentAccount.getBalance());
+    }
+
+    public void viewTransactions() {
+        if (isAccountNull()) return;
+        currentAccount.printTransactions();
+    }
+
+    private boolean isAccountNull() {
+        if (currentAccount == null) {
+            System.out.println("Please create an account first.");
+            return true;
+        }
+        return false;
+    }
+}
