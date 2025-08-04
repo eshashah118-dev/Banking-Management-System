@@ -1,0 +1,56 @@
+package bankingsystem;
+import java.util.*;
+import java.text.*;
+
+public class Account {
+    private int accountId;
+    private String holderName;
+    private double balance;
+    private List<Transaction> transactions;
+
+    public Account(int id, String name) {
+        this.accountId = id;
+        this.holderName = name;
+        this.balance = 0.0;
+        this.transactions = new ArrayList<>();
+        System.out.println("Account for " + holderName + " created.");
+    }
+
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid amount.");
+            return;
+        }
+        balance += amount;
+        transactions.add(new Transaction("Deposit", amount));
+        System.out.println("Deposited: $" + amount);
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= 0 || amount > balance) {
+            System.out.println("Insufficient balance or invalid amount.");
+            return;
+        }
+        balance -= amount;
+        transactions.add(new Transaction("Withdrawal", amount));
+        System.out.println("Withdrawn: $" + amount);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void printTransactions() {
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions.");
+            return;
+        }
+        for (Transaction t : transactions) {
+            System.out.println(t);
+        }
+    }
+}
